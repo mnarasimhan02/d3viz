@@ -1,0 +1,135 @@
+body {
+  font: 11px sans-serif;
+}
+
+h2.subtitle {
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* Basic styling for the step links */
+a.step-link {
+  padding: 5px;
+  background-color: steelblue;
+  color: #2d2d2d;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+a.step-link:hover,
+a.active {
+  color: #ddd;
+}
+
+#container {
+  margin: auto;
+  padding-top: 20px;
+  width: 980px;
+}
+
+/* Basic styling for Description link*/
+a.desc-link {
+  padding: 5px;
+  background-color: steelblue;
+  color: #2d2d2d;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+a.desc-link:hover,
+a.active {
+  color: #ddd;
+}
+
+/* Here is our relatively positioned container div to hold the rest of the visualization */
+#vis-container {
+  position: relative;
+  width: 980px;
+  height: 510px;
+  margin-top: 10px;
+}
+
+/* All the .annotation-step divs are inside #annotation-steps. z-index ensures annotations stay on top of visualization. */
+#annotation-steps {
+  position: absolute;
+  z-index: 40;
+}
+
+#vis-nav {
+  z-index: 20;
+  margin-top: 16px;
+}
+
+/* Change the background color. */
+#vis-container {
+  position: absolute;
+  width: 960px;
+  height: 790px;
+  z-index: 10;
+  overflow: hidden;
+  background-color: #eee;
+  text-align: center;
+  padding: 12px;
+}
+
+/* By default, all annotation-steps are hidden. */
+.annotation-step {
+  position: absolute;
+  display: none;
+}
+
+/* Finally we can position each annotation exactly how we want. */
+.annotation {
+  position: absolute;
+}
+
+#step1-gdp-annotation {
+  left: 70px;
+  top: 50px;
+  width: 140px;
+  font-weight: bold;
+}
+
+#step2-gdp-annotation {
+  left: 800px;
+  top: 290px;
+  width: 140px;
+  font-weight: bold;
+}
+
+#step3-gdp-annotation {
+  left: 40px;
+  top: 350px;
+  width: 140px;
+  font-weight: bold;
+}
+
+#year-dropdown {
+  width: 64px;
+  height: 24px;
+  padding: 4px;
+  border: 1px solid steelblue;
+  border-radius: 5px;
+}
+
+/*
+Tooltip 
+*/
+
+.tooltip {
+  font-family: sans-serif;
+  font-size: 12px;
+  position: fixed;
+  background: grey;
+  padding: 0.5em 0.75em;
+  border: transparent solid 1px;
+  pointer-events: none;
+  color: #fff;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9000;
+  opacity: 0;
+  border-radius: 5px;
+}

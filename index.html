@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project - Data Visualization Course</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="tooltip"></div>
+
+        <h1>GDP Per Capita (in US$)</h1>
+        <h2 class="subtitle">Visualization is based on data of the GDP Per Capita of various countries from year 2000 -
+            2015</h2>
+        <div id="vis-nav">
+            <a href="#" id="step1" class="step-link active">Scene 1</a>
+            <a href="#" id="step2" class="step-link">Scene 2</a>
+            <a href="#" id="step3" class="step-link">Scene 3</a>
+            <a href="https://github.com" target="_blank" class="desc-link">About this Visualization</a>
+
+        </div>
+        <div>
+            <div id="annotation-steps">
+                <div class="annotation-step" id="step1-annotation" style="display:block;">
+                    <div class="annotation" id="step1-gdp-annotation">
+                        <h4>Select the Year using the Dropdown to View the GDP Per Capita for a particular year</h4>
+
+                    </div>
+                </div>
+                <div class="annotation-step" id="step2-annotation">
+                    <div class="annotation" id="step2-gdp-annotation">
+                        <h4>Click on a Legend on the top right to see countries in the particular continent. Click
+                            anywhere in the chart to remove filter.</h4>
+
+                    </div>
+                </div>
+
+                <div class="annotation-step" id="step3-annotation">
+                    <div class="annotation" id="step3-gdp-annotation">
+                        <h4>Mouseover a country to see the data associated with it for a selected year</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="vis-container">
+                <select id="year-dropdown"></select>
+                <script src="js/WorldMap.js"></script>
+                <script src="js/index.js"></script>
+                <script src="js/scenes.js"></script>x
+            </div>
+        </div>
+</body>
+
+</html>
