@@ -1,7 +1,4 @@
-## Data Visualization- Project Essay
-
-By mnarasimhan; mnarasimhan
-Summer 2020
+## Data Visualization- Project
 
 View visualization by clicking here : [Final Project - GDP Per Capita (in US\$) of various Countries](https://mnarasimhan02.github.io/)
 
