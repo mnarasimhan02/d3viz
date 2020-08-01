@@ -3,7 +3,7 @@
 By mnarasimhan; mnarasimhan
 Summer 2020
 
-View visualization by clicking here : [Final Project - GDP Per Capita (in US\$) of various Countries](https://abc.github.io/)
+View visualization by clicking here : [Final Project - GDP Per Capita (in US\$) of various Countries](https://mnarasimhan02.github.io/)
 
 ### About the Visualization
 
