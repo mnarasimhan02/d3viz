@@ -50,8 +50,8 @@ The user event of "mouse over" a data point changes the current state of the cha
 
 ### References
 
-World map example used as reference
+World map reference
 http://bl.ocks.org/micahstubbs/8e15870eb432a21f0bc4d3d527b2d14f
 
-Data used gotten from World Bank
+Data from World Bank
 https://databank.worldbank.org/indicator/NY.GDP.PCAP.CD/1ff4a498/Popular-Indicators#
