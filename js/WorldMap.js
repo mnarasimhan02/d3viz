@@ -210,8 +210,9 @@ class WorldMap {
         g.append('text').attr('id', 'current-year-text')
             .attr('x', vis.width * .06)
             .attr('y', vis.height * .96)
-            .style('font-size', '84px')
-            .style('fill', 'grey')
+            .style('font-size', '50px')
+            .style('fill', 'steelblue')
+            .style('opacity', .77)
             .text(vis.currentYear).raise();
     }
 
