@@ -16,26 +16,8 @@ class WorldMap {
     margin = { top: 50, right: 25, bottom: 75, left: 75 };
     width = this.svgW - (this.margin.right + this.margin.left);
     height = this.svgH - (this.margin.top + this.margin.bottom);
-    color = d3.
 
-        // Tools
-        // tip = d3.tip()
-        //     .attr('class', 'd3-tip')
-        //     .offset([-10, 0])
-        //     .html((d) => {
-        //         const data = this.countryNameMap[d.properties.name];
-        //         let value;
-        //         const format = d3.format(",");
-        //         if (!data) {
-        //             value = 'N/A'
-        //         } else {
-        //             value = data[this.metric];
-        //             value = format(value)
-        //         }
-        //         return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>" + this.metric + ": </strong><span class='details'>" + value + "</span>";
-        //     });
-
-        path = d3.geoPath();
+    path = d3.geoPath();
     countryNameMap = {}
 
 
@@ -50,9 +32,6 @@ class WorldMap {
 
         _data.forEach(function (d) {
             for (let startYear = 2000, endYear = 2015; startYear <= endYear; startYear++) {
-                if (!continentMap[d['Country Code']]) {
-                    console.log(d)
-                }
                 const currentData = {
                     name: d['Country Name'],
                     continent: continentMap[d['Country Code']],
@@ -76,7 +55,7 @@ class WorldMap {
         const vis = this;
         select.on('change', function () {
             vis.currentYear = d3.select(this).property('value');
-            vis.render()
+            vis.render(true)
         })
         // set the default year
         this.currentYear = years[0];
@@ -109,7 +88,8 @@ class WorldMap {
 
         vis.path = d3.geoPath().projection(this.projection);
 
-        vis.color = d3.scaleOrdinal().domain(vis.continents).range(["#ee4035", "#ffbf00", "#e86af0", "#028900", "#0392cf"])
+        vis.color = d3.scaleOrdinal().domain(vis.continents).range(["#ee4035", "#ffbf00", "#e86af0", "#028900", "#0392cf"]);
+        WorldMap.color = vis.color
 
         vis.render();
     }
@@ -120,7 +100,7 @@ class WorldMap {
      *
      * @returns void
      */
-    render() {
+    render(yearChange) {
         // Define this vis
         const vis = this;
 
@@ -129,12 +109,17 @@ class WorldMap {
         data.forEach(d => {
             vis.countryNameMap[d.name] = d;
         })
+        if (yearChange) {
+            vis.g.transition().duration(500).style('opacity', 0.6).transition().duration(500).style('opacity', 1);
+            vis.g.select('#current-year-text').text(vis.currentYear)
+            return;
+        }
 
         // clear the content of the map
         vis.g.html("")
-        vis.g.append("g")
+        const g = vis.g.append("g")
             .attr("class", "countries")
-            .selectAll("path")
+        g.selectAll("path")
             .data(this.topojson.features)
             .enter().append("path")
             .attr("class", (d) => {
@@ -174,6 +159,9 @@ class WorldMap {
                     .style("opacity", 1)
                     .style("stroke", "white")
                     .style("stroke-width", 3);
+                if (data.continent !== 'N/A') {
+                    WorldMap.showContinent(d3.select('#legend-' + data.continent).node(), data.continent)
+                }
             })
             .on('mouseout', function (d) {
                 hideTooltip(d)
@@ -181,6 +169,7 @@ class WorldMap {
                     .style("opacity", 0.8)
                     .style("stroke", "white")
                     .style("stroke-width", 0.3);
+                WorldMap.resetContinents()
             })
             .on('mousemove', function (d) {
                 moveTooltip(d)
@@ -196,13 +185,11 @@ class WorldMap {
             .enter()
             .append('g')
             .attr('class', 'legend')
+            .attr('id', d => 'legend-' + d)
             .attr('transform', (d, index) => `translate(${vis.width - 50}, ${index * 25})`)
             .style('cursor', 'pointer')
             .on('click', function (d) {
-                d3.selectAll('.continent').style('fill', 'grey')
-                d3.selectAll('.' + d).style('fill', vis.color(d));
-                d3.selectAll('.legend').attr('opacity', .5)
-                d3.select(this).attr('opacity', 1)
+                WorldMap.showContinent(this, d)
                 d3.event.stopPropagation();
             });
         legend.append('rect')
@@ -217,11 +204,33 @@ class WorldMap {
 
         //clear the filter on the map
         vis.svg.on('click', function () {
-            d3.selectAll('.continent').style('fill', d => d.color);
-            d3.selectAll('.legend').attr('opacity', 1)
+            WorldMap.resetContinents();
         })
+
+        g.append('text').attr('id', 'current-year-text')
+            .attr('x', vis.width * .06)
+            .attr('y', vis.height * .96)
+            .style('font-size', '84px')
+            .style('fill', 'grey')
+            .text(vis.currentYear).raise();
     }
 
+    static showContinent(target, continent) {
+        d3.selectAll('.continent').style('fill', 'grey')
+        d3.selectAll('.' + continent).style('fill', WorldMap.color(continent));
+        d3.selectAll('.legend').attr('opacity', .5)
+        d3.select(target).attr('opacity', 1)
+    }
+
+    static resetContinents() {
+        d3.selectAll('.continent').style('fill', d => d.color);
+        d3.selectAll('.legend').attr('opacity', 1)
+    }
+
+
+    static fadeIn() {
+        d3.select('.countries').transition().duration(500).style('opacity', 0.6).transition().duration(500).style('opacity', 1);
+    }
 
 
 }

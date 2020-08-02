@@ -1,8 +1,10 @@
 
+
+
+
+
+
 // listen for clicks on all buttons for scenes
-
-
-console.log('ddd')
 d3.selectAll(".step-link").on('click', function () {
     const id = d3.select(this).attr('id');
 
@@ -17,4 +19,6 @@ d3.selectAll(".step-link").on('click', function () {
     d3.selectAll('.annotation-step').style('display', 'none');
     // show the current step annotation
     d3.select(`#${id}-annotation`).style('display', 'block')
+    WorldMap.resetContinents();
+    WorldMap.fadeIn()
 })

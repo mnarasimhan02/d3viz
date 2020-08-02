@@ -10,15 +10,23 @@ h2.subtitle {
 /* Basic styling for the step links */
 a.step-link {
   padding: 5px;
-  background-color: steelblue;
-  color: #2d2d2d;
+  background-color: #cccccc;
+  color: steelblue;
   text-decoration: none;
-  border-radius: 3px;
 }
 
 a.step-link:hover,
 a.active {
   color: #ddd;
+  background-color: steelblue;
+}
+.step-link {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
 }
 
 #container {
@@ -30,15 +38,20 @@ a.active {
 /* Basic styling for Description link*/
 a.desc-link {
   padding: 5px;
-  background-color: steelblue;
-  color: #2d2d2d;
+  background-color: #cccccc;
+  color: steelblue;
   text-decoration: none;
   border-radius: 3px;
+  height: 24px;
+  line-height: 20px;
+  float: right;
+  margin-top: 25px;
 }
 
 a.desc-link:hover,
 a.active {
   color: #ddd;
+  background-color: steelblue;
 }
 
 /* Here is our relatively positioned container div to hold the rest of the visualization */
@@ -57,7 +70,6 @@ a.active {
 
 #vis-nav {
   z-index: 20;
-  margin-top: 16px;
 }
 
 /* Change the background color. */
@@ -110,6 +122,9 @@ a.active {
   padding: 4px;
   border: 1px solid steelblue;
   border-radius: 5px;
+  margin-left: 30%;
+  margin-top: 30px !important;
+  display: inline-block;
 }
 
 /*
