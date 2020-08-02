@@ -10,10 +10,10 @@ function separateByComma(value) {
 
 function showTooltip(d, year) {
     let content = `
-        <div style="color: #EF4035"><b>Year:</b> ${year}</div><br />
-        <div style="color: purple"><b>Country:</b>${d.name}</div> <br />
-        <div style="color: blue"><b>Continent:</b> ${d.continent}</div><br />
-        <div style="color: red"><b>GDP Per Capita:</b> $${isNaN(d.value) ? 'N/A' : separateByComma(d.value)}</div>
+        <div style="color: yellow"><strong>Year:</strong> ${year}</div>
+        <div style="color: yellow"><strong>Country:</strong>${d.name}</div>
+        <div style="color: yellow"><strong>Continent:</strong> ${d.continent}</div>
+        <div style="color: yellow"><strong>GDP Per Capita:</strong> $${isNaN(d.value) ? 'N/A' : separateByComma(d.value)}</div>
       `;
     tooltip.html(content);
     tooltip.transition().style("opacity", 1);

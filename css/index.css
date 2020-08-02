@@ -135,11 +135,11 @@ Tooltip
   font-family: sans-serif;
   font-size: 12px;
   position: fixed;
-  background: grey;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
   padding: 0.5em 0.75em;
   border: transparent solid 1px;
   pointer-events: none;
-  color: #fff;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
